@@ -9,4 +9,3 @@ services:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=docker
       - POSTGRESQL_DATABASE=apisolid
-      - POSTGRESQL_DATABASE=apisolid
