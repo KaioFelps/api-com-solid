@@ -1,5 +1,6 @@
 import { UsersRepositoryInterface } from "@/repositories/users-repository";
 import { hash } from "bcryptjs";
+import { UserAlreadyExistsError } from "./errors/user-already-exist-error";
 
 type RegisterActionType = {
   email: string;
@@ -14,7 +15,7 @@ export class RegisterAction {
     const userWithSameEmail = await this.UsersRepository.findByEmail(email);
 
     if (userWithSameEmail) {
-      throw new Error("E-mail já cadastrado.");
+      throw new UserAlreadyExistsError();
     }
 
     const hashingRounds = 4;
