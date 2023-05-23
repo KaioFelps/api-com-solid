@@ -8,6 +8,7 @@
             {
                 "endOfLine": "auto"
             }
-        ]
+        ],
+        "no-useless-constructor": 0
     }
 }
