@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { UsersRepositoryInterface } from "@/repositories/users-repository";
 import { hash } from "bcryptjs";
 
 type RegisterActionType = {
@@ -8,16 +8,10 @@ type RegisterActionType = {
 };
 
 export class RegisterAction {
-  constructor(private UsersRepository: any) {
-    // private userrepository é o mesmo que receber o userrepository e colocá-lo como this.usersRepository = usersRepository
-  }
+  constructor(private UsersRepository: UsersRepositoryInterface) {}
 
   async execute({ email, name, password }: RegisterActionType) {
-    const userWithSameEmail = await prisma.user.findUnique({
-      where: {
-        email,
-      },
-    });
+    const userWithSameEmail = await this.UsersRepository.findByEmail(email);
 
     if (userWithSameEmail) {
       throw new Error("E-mail já cadastrado.");
@@ -26,9 +20,7 @@ export class RegisterAction {
     const hashingRounds = 4;
     const passwordHash = await hash(password, hashingRounds);
 
-    const prismaUsersRepository = new this.UsersRepository();
-
-    await prismaUsersRepository.create({
+    await this.UsersRepository.create({
       email,
       name,
       password_hash: passwordHash,
