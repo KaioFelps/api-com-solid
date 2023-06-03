@@ -8,7 +8,7 @@ type RegisterActionType = {
   name: string;
 };
 
-export class RegisterAction {
+export class RegisterService {
   constructor(private UsersRepository: UsersRepositoryInterface) {}
 
   async execute({ email, name, password }: RegisterActionType) {
