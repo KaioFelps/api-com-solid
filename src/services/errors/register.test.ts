@@ -19,7 +19,6 @@ describe("Register Services", async () => {
       user.password_hash
     );
 
-    console.log(hasPasswordBeenCorrectlyHashed);
     expect(hasPasswordBeenCorrectlyHashed).toBe(true);
   });
 
@@ -34,7 +33,8 @@ describe("Register Services", async () => {
       password: "123456",
     });
 
-    expect(async () => {
+    // expect com promisses precisam do await
+    await expect(async () => {
       await registerService.execute({
         email,
         name: "Marianny",
