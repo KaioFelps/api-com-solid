@@ -34,12 +34,24 @@ describe("Register Services", async () => {
       password: "123456",
     });
 
-    expect(() => {
-      registerService.execute({
+    expect(async () => {
+      await registerService.execute({
         email,
         name: "Marianny",
         password: "123456",
       });
     }).rejects.toBeInstanceOf(UserAlreadyExistsError);
+  });
+
+  it("should register an user", async () => {
+    const registerService = new RegisterService(new InMemoryUsersRepository());
+
+    const { user } = await registerService.execute({
+      email: "johndoe@example.com",
+      name: "john doe",
+      password: "123456",
+    });
+
+    expect(user.id).toEqual(expect.any(String));
   });
 });
