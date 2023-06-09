@@ -5,7 +5,7 @@ Gym Pass App
 ## RFs (Requisitos funcionais)
 funcionalidades da aplicação
 
-- [ ] Deve ser possível se cadastrar;
+- [x] Deve ser possível se cadastrar;
 - [ ] Deve ser possível se autenticar;
 - [ ] Deve ser possível obter o perfil de um usuário logado;
 - [ ] Deve ser possível obter o número ed check-ins realizados pelo usuário logado;
@@ -28,7 +28,7 @@ condições para os requisitos funcionais
 ## RFNs (Requisitos não funcionais)
 requisitos técnicos e coisas que não partem nem dependam do usuário final
 
-- [ ] Senhas devem estar criptografadas;
+- [x] Senhas devem estar criptografadas;
 - [ ] Todos os dados precisam ser persistidos num banco de dados PostgreSQL;
 - [ ] Todas as listas de dados precisam estar paginadas com 20 itens por página;
 - [ ] O usuário deve ser identificado por um JWT.
