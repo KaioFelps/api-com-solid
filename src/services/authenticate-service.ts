@@ -27,10 +27,10 @@ export class AuthenticateService {
 
     const doesPasswordMatch = await compare(password, user.password_hash);
 
-    if (!doesPasswordMatch) {
+    if (doesPasswordMatch === false) {
       throw new InvalidCredentialsError();
+    } else {
+      return { user };
     }
-
-    return { user };
   }
 }
