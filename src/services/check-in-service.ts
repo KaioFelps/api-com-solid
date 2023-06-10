@@ -17,6 +17,13 @@ export class CheckInService {
     gymId,
     userId,
   }: CheckInServiceInput): Promise<CheckInServiceOutput> {
+    const thereIsCheckInOnGivenDate =
+      await this.checkInRepository.findByUserIdOnDate(userId, new Date());
+
+    if (thereIsCheckInOnGivenDate) {
+      throw new Error("Já fez um check-in na data atual.");
+    }
+
     const checkIn = await this.checkInRepository.create({
       gym_id: gymId,
       user_id: userId,
