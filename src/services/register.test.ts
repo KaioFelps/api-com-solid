@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { RegisterService } from "../register-service";
+import { RegisterService } from "./register-service";
 import { compare } from "bcryptjs";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users.repository";
-import { UserAlreadyExistsError } from "./user-already-exist-error";
+import { UserAlreadyExistsError } from "./errors/user-already-exist-error";
 
 describe("Register Services", async () => {
   let sut: RegisterService;
