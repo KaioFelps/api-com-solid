@@ -3,13 +3,13 @@ import { hash } from "bcryptjs";
 import { UserAlreadyExistsError } from "./errors/user-already-exist-error";
 import { User } from "@prisma/client";
 
-type RegisterServiceType = {
+type RegisterServiceInput = {
   email: string;
   password: string;
   name: string;
 };
 
-type RegisterServiceResponse = {
+type RegisterServiceOutput = {
   user: User;
 };
 
@@ -20,7 +20,7 @@ export class RegisterService {
     email,
     name,
     password,
-  }: RegisterServiceType): Promise<RegisterServiceResponse> {
+  }: RegisterServiceInput): Promise<RegisterServiceOutput> {
     const userWithSameEmail = await this.UsersRepository.findByEmail(email);
 
     if (userWithSameEmail) {
