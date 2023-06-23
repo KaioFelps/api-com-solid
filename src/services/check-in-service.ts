@@ -1,9 +1,14 @@
 import { CheckInsRepositoryInterface } from "@/repositories/check-ins-repository";
+import { GymsRepositoryInterface } from "@/repositories/gyms-repository";
 import { CheckIn } from "@prisma/client";
+import { NotFoundError } from "./errors/not-found-error";
+import { getDistanceBetweenTwoCoordinates } from "@/utils/get-distance-between-two-coordinates";
 
 type CheckInServiceInput = {
   userId: string;
   gymId: string;
+  userLongitude: number;
+  userLatitude: number;
 };
 
 type CheckInServiceOutput = {
@@ -11,12 +16,41 @@ type CheckInServiceOutput = {
 };
 
 export class CheckInService {
-  constructor(private checkInRepository: CheckInsRepositoryInterface) {}
+  constructor(
+    private checkInRepository: CheckInsRepositoryInterface,
+    private gymRepository: GymsRepositoryInterface
+  ) {}
 
   async execute({
     gymId,
     userId,
+    userLatitude,
+    userLongitude,
   }: CheckInServiceInput): Promise<CheckInServiceOutput> {
+    const gym = await this.gymRepository.findById(gymId);
+
+    if (!gym) {
+      throw new NotFoundError();
+    }
+
+    const distance = getDistanceBetweenTwoCoordinates(
+      {
+        latitude: userLatitude,
+        longitude: userLongitude,
+      },
+      {
+        latitude: Number(gym.latitude),
+        longitude: Number(gym.longitude),
+      }
+    );
+
+    // distance returns the value in km, we passing 0.1km, equals to 100m
+    const MAX_DISTANCE_IN_KM = 0.1;
+
+    if (distance > MAX_DISTANCE_IN_KM) {
+      throw new Error();
+    }
+
     const thereIsCheckInOnGivenDate =
       await this.checkInRepository.findByUserIdOnDate(userId, new Date());
 
