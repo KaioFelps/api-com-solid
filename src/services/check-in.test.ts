@@ -3,6 +3,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { CheckInService } from "./check-in-service";
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gym.repository";
 import { Decimal } from "@prisma/client/runtime/library";
+import { MaxDistanceError } from "./errors/max-distance-error";
+import { MaxNumberOfCheckInsError } from "./errors/max-number-of-check-ins.-error";
 
 describe("Check In Service", () => {
   let checkInRepository: InMemoryCheckInsRepository;
@@ -51,16 +53,16 @@ describe("Check In Service", () => {
       userLongitude: -52.3660119,
     });
 
-    await expect(() =>
-      sut.execute({
-        gymId: "gym-01",
-        userId: "user-01",
-        userLatitude: -24.04701,
-        userLongitude: -52.414592,
-      })
-    )
-      .rejects.toBeInstanceOf(Error)
-      .then((res) => console.log(res));
+    const secondCheckinOnSameDayPromise = sut.execute({
+      gymId: "gym-01",
+      userId: "user-01",
+      userLatitude: -24.0112631,
+      userLongitude: -52.3660119,
+    });
+
+    await expect(secondCheckinOnSameDayPromise).rejects.toBeInstanceOf(
+      MaxNumberOfCheckInsError
+    );
   });
 
   it("should be possible to check in more than once in different days", async () => {
@@ -102,6 +104,6 @@ describe("Check In Service", () => {
       userLongitude: -52.414592,
     });
 
-    await expect(checkInPromise).rejects.toBeInstanceOf(Error);
+    await expect(checkInPromise).rejects.toBeInstanceOf(MaxDistanceError);
   });
 });
