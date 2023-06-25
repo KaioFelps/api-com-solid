@@ -60,4 +60,10 @@ export class InMemoryCheckInsRepository implements CheckInsRepositoryInterface {
 
     return checkInsAmount;
   }
+
+  async findById(id: string): Promise<CheckIn | null> {
+    const checkIn = this.items.find((checkin) => checkin.id === id);
+
+    return checkIn ?? null;
+  }
 }
