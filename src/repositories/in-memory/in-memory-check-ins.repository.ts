@@ -66,4 +66,16 @@ export class InMemoryCheckInsRepository implements CheckInsRepositoryInterface {
 
     return checkIn ?? null;
   }
+
+  async save(
+    checkIn: Prisma.CheckInUncheckedCreateInput
+  ): Promise<CheckIn | null> {
+    const index = this.items.findIndex((item) => item.id === checkIn.id);
+
+    if (index >= 0) {
+      this.items[index] = checkIn as CheckIn;
+    }
+
+    return checkIn as CheckIn;
+  }
 }
