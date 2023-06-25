@@ -30,4 +30,15 @@ export class InMemoryGymsRepository implements GymsRepositoryInterface {
 
     return gym;
   }
+
+  async searchMany(query: string, page: number): Promise<Gym[]> {
+    const GYMS_PER_PAGE = 20;
+    const QUERY_OFFSET = (page - 1) * GYMS_PER_PAGE;
+
+    const gyms = this.items
+      .filter((gym) => gym.title.toLowerCase().includes(query.toLowerCase()))
+      .slice(QUERY_OFFSET, page * GYMS_PER_PAGE);
+
+    return gyms;
+  }
 }
