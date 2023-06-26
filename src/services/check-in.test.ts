@@ -4,7 +4,7 @@ import { CheckInService } from "./check-in-service";
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gym.repository";
 import { Decimal } from "@prisma/client/runtime/library";
 import { MaxDistanceError } from "./errors/max-distance-error";
-import { MaxNumberOfCheckInsError } from "./errors/max-number-of-check-ins.-error";
+import { MaxNumberOfCheckInsError } from "./errors/max-number-of-check-ins-error";
 
 describe("Check In Service", () => {
   let checkInRepository: InMemoryCheckInsRepository;

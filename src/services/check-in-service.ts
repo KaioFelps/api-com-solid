@@ -4,7 +4,7 @@ import { CheckIn } from "@prisma/client";
 import { NotFoundError } from "./errors/not-found-error";
 import { getDistanceBetweenTwoCoordinates } from "@/utils/get-distance-between-two-coordinates";
 import { MaxDistanceError } from "./errors/max-distance-error";
-import { MaxNumberOfCheckInsError } from "./errors/max-number-of-check-ins.-error";
+import { MaxNumberOfCheckInsError } from "./errors/max-number-of-check-ins-error";
 
 type CheckInServiceInput = {
   userId: string;
