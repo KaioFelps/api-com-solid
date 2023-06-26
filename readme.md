@@ -22,7 +22,7 @@ condições para os requisitos funcionais
 - [x] O usuário não deve poder se cadastrar com um e-mail duplicado;
 - [x] O usuário não poed fazer 2 check-ins no mesmo dia;
 - [x] O usuário não pode fazer check-in se não estiver perto (100m) da academia;
-- [ ] O check-in só pode ser validado em até 20 minutos após criação;
+- [x] O check-in só pode ser validado em até 20 minutos após criação;
 - [ ] O check-in só pode ser validado por administradores;
 - [ ] A academia só pode ser cadastrado por administradores;
 
