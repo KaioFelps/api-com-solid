@@ -4,20 +4,20 @@ import { NotFoundError } from "./errors/not-found-error";
 import dayjs from "dayjs";
 import { ExpiredCheckInsError } from "./errors/expired-check-ins-error";
 
-interface ValidateCheckInsInput {
+interface ValidateCheckInInput {
   checkInId: string;
 }
 
-interface ValidateCheckInsOutput {
+interface ValidateCheckInOutput {
   checkIn: CheckIn;
 }
 
-export class ValidateCheckIns {
+export class ValidateCheckInService {
   constructor(private checkInsRepository: CheckInsRepositoryInterface) {}
 
   async execute({
     checkInId,
-  }: ValidateCheckInsInput): Promise<ValidateCheckInsOutput> {
+  }: ValidateCheckInInput): Promise<ValidateCheckInOutput> {
     const checkIn = await this.checkInsRepository.findById(checkInId);
 
     if (!checkIn) {

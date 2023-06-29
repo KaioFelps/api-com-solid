@@ -1,17 +1,17 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { ValidateCheckIns } from "./validate-check-in-service";
+import { ValidateCheckInService } from "./validate-check-in-service";
 import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-check-ins.repository";
 import { CheckInsRepositoryInterface } from "@/repositories/check-ins-repository";
 import { NotFoundError } from "./errors/not-found-error";
 import { ExpiredCheckInsError } from "./errors/expired-check-ins-error";
 
 let checkInsRepository: CheckInsRepositoryInterface;
-let sut: ValidateCheckIns;
+let sut: ValidateCheckInService;
 
 describe("Validate Check Ins Service", () => {
   beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository();
-    sut = new ValidateCheckIns(checkInsRepository);
+    sut = new ValidateCheckInService(checkInsRepository);
 
     vi.useFakeTimers();
   });
