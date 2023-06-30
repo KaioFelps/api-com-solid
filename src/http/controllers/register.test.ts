@@ -1,13 +1,13 @@
 import request from "supertest";
 import { app } from "@/app";
-import { beforeAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
 describe("Register (e2e)", async () => {
   beforeAll(async () => {
     await app.ready();
   });
 
-  beforeAll(async () => {
+  afterAll(async () => {
     await app.close();
   });
 
