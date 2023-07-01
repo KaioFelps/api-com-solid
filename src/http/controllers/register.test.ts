@@ -18,8 +18,6 @@ describe("Register (e2e)", async () => {
       password: "123456",
     });
 
-    console.log(response);
-
     expect(response.statusCode).toEqual(201);
   });
 });
