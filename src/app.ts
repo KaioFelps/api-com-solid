@@ -1,5 +1,5 @@
 import fastify from "fastify";
-import { routes } from "./http/routes";
+import { routes } from "./http/controllers/users/routes";
 import { GlobalErrorHandler } from "./services/errors/global-error-handler";
 import fastifyJwt from "@fastify/jwt";
 import { env } from "./env";
