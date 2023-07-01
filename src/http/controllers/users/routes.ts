@@ -4,7 +4,7 @@ import { authenticate } from "./authenticate.controller";
 import { profile } from "./profile";
 import { JWTVerifier } from "../../middleware/jwt-verifier";
 
-export async function routes(app: FastifyInstance) {
+export async function usersRoutes(app: FastifyInstance) {
   app.post("/users", register);
   app.post("/sessions", authenticate);
 
