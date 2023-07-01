@@ -12,7 +12,7 @@ function generateDatabaseUrl(schema: string) {
   }
 
   const url = new URL(process.env.DATABASE_URL);
-  url.searchParams.set("search", schema);
+  url.searchParams.set("schema", schema);
 
   return url.toString();
 }
