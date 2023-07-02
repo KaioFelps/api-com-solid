@@ -6,8 +6,12 @@ export async function refresh(req: FastifyRequest, rep: FastifyReply) {
   // se o código depois disso continuar, é porque o cookie (do REFRESH token) existe e ainda não expirou, logo, podemos renová-lo
   await req.jwtVerify({ onlyCookie: true });
 
+  const role = req.user.role;
+
   const token = await rep.jwtSign(
-    {},
+    {
+      role,
+    },
     {
       sign: {
         sub: req.user.sub,
@@ -16,7 +20,9 @@ export async function refresh(req: FastifyRequest, rep: FastifyReply) {
   );
 
   const refreshToken = await rep.jwtSign(
-    {},
+    {
+      role,
+    },
     {
       sign: {
         sub: req.user.sub,
