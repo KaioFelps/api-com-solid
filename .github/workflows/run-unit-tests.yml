@@ -18,4 +18,4 @@ jobs:
             # tipo um npm install, mas o ci não vai tentar interagir com quem executou o comando, como perguntas ou atualizações ou mexer no package.json
             # só instala as dependências
             - run: npm ci
-            - run: npm run testf
+            - run: npm run test
