@@ -7,7 +7,7 @@ jobs:
 
         steps:
             # baixa o código na máquina
-            - uses: action/checkout@v3
+            - uses: actions/checkout@v3
             # instala o node
             - uses: actions/setup-node@v3
               with:
