@@ -1,8 +1,8 @@
 import { FastifyInstance } from "fastify";
 import { JWTVerifier } from "../../middleware/jwt-verifier";
 import { search } from "./search.controller";
-import { create } from "./create.controller";
 import { nearby } from "./nearby.controller";
+import { create } from "./create.controller";
 
 export async function gymsRoutes(app: FastifyInstance) {
   // middleware. Fastify calls it hooks
