@@ -4,6 +4,7 @@ import { create } from "./create.controller";
 import { validate } from "./validate.controller";
 import { history } from "./history.controller";
 import { metrics } from "./metrics.controller";
+import { userRoleVerfiier } from "@/http/middleware/user-role-verifier";
 
 export async function checkInsRoutes(app: FastifyInstance) {
   // hooks are the same as middlewares, fastify just names it differently
@@ -13,5 +14,11 @@ export async function checkInsRoutes(app: FastifyInstance) {
   app.get("/check-ins/metrics", metrics);
 
   app.post("/gyms/:gymId/check-ins", create);
-  app.patch("/check-ins/:checkInId/validate", validate);
+  app.patch(
+    "/check-ins/:checkInId/validate",
+    {
+      onRequest: [userRoleVerfiier("ADMIN")],
+    },
+    validate
+  );
 }
