@@ -1,0 +1,21 @@
+name: Run Unit Tests
+on: [push]
+jobs:
+    run-unit-tests:
+        name: Run Uni Tests
+        runs-on: ubuntu-latest
+
+        steps:
+            # baixa o código na máquina
+            - uses: action/chcekout@v3
+            # instala o node
+            - uses: actions/setup-node@v3
+              with:
+                node-version: 18
+                # cachea as dependências
+                cache: "npm"
+
+            # tipo um npm install, mas o ci não vai tentar interagir com quem executou o comando, como perguntas ou atualizações ou mexer no package.json
+            # só instala as dependências
+            - run: npm ci
+            - run: npm run test
