@@ -32,6 +32,7 @@ export class PrismaGymsRepository implements GymsRepositoryInterface {
       where: {
         title: {
           contains: query,
+          mode: "insensitive",
         },
       },
       take: GYMS_PER_PAGE,
