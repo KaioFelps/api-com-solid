@@ -23,8 +23,8 @@ condições para os requisitos funcionais
 - [x] O usuário não poed fazer 2 check-ins no mesmo dia;
 - [x] O usuário não pode fazer check-in se não estiver perto (100m) da academia;
 - [x] O check-in só pode ser validado em até 20 minutos após criação;
-- [ ] O check-in só pode ser validado por administradores;
-- [ ] A academia só pode ser cadastrado por administradores;
+- [x] O check-in só pode ser validado por administradores;
+- [x] A academia só pode ser cadastrado por administradores;
 
 ## RFNs (Requisitos não funcionais)
 requisitos técnicos e coisas que não partem nem dependam do usuário final
@@ -32,4 +32,4 @@ requisitos técnicos e coisas que não partem nem dependam do usuário final
 - [x] Senhas devem estar criptografadas;
 - [x] Todos os dados precisam ser persistidos num banco de dados PostgreSQL;
 - [x] Todas as listas de dados precisam estar paginadas com 20 itens por página;
-- [ ] O usuário deve ser identificado por um JWT.
+- [x] O usuário deve ser identificado por um JWT.
